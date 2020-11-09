@@ -65,7 +65,7 @@ export class TranslateService {
      * });
    */
   get onLangChange(): EventEmitter<LangChangeEvent> {
-    return this.isolate ? this._onLangChange : this.store.onLangChange;
+    return (this.isolate && !this.extend) ? this._onLangChange : this.store.onLangChange;
   }
 
   /**
@@ -75,18 +75,18 @@ export class TranslateService {
      * });
    */
   get onDefaultLangChange() {
-    return this.isolate ? this._onDefaultLangChange : this.store.onDefaultLangChange;
+    return (this.isolate && !this.extend) ? this._onDefaultLangChange : this.store.onDefaultLangChange;
   }
 
   /**
    * The default lang to fallback when translations are missing on the current lang
    */
   get defaultLang(): string {
-    return this.isolate ? this._defaultLang : this.store.defaultLang;
+    return (this.isolate && !this.extend) ? this._defaultLang : this.store.defaultLang;
   }
 
   set defaultLang(defaultLang: string) {
-    if (this.isolate) {
+    if (this.isolate && !this.extend) {
       this._defaultLang = defaultLang;
     } else {
       this.store.defaultLang = defaultLang;
@@ -97,11 +97,11 @@ export class TranslateService {
    * The lang currently used
    */
   get currentLang(): string {
-    return this.isolate ? this._currentLang : this.store.currentLang;
+    return (this.isolate && !this.extend) ? this._currentLang : this.store.currentLang;
   }
 
   set currentLang(currentLang: string) {
-    if (this.isolate) {
+    if (this.isolate && !this.extend) {
       this._currentLang = currentLang;
     } else {
       this.store.currentLang = currentLang;
