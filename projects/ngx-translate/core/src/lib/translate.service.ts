@@ -163,6 +163,9 @@ export class TranslateService {
     if (defaultLanguage) {
       this.setDefaultLang(defaultLanguage);
     }
+    if(this.currentLang) {
+      this.retrieveTranslations(this.currentLang);
+    }
   }
 
   /**
